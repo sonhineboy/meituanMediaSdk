@@ -22,7 +22,7 @@ func NewClient() *Client {
 		client: httpClient,
 	}
 }
-func (c *Client) exec(apiBase apis.ApiBase, myHeaders *apis.Headers) (*http.Response, error) {
+func (c *Client) Exec(apiBase apis.ApiBase, myHeaders *apis.Headers) (*http.Response, error) {
 	request, err := http.NewRequest(apiBase.GetMethod(), fmt.Sprintf("%s%s", BaseUrl, apiBase.GetPath()), bytes.NewReader(apiBase.BuildBody()))
 	if err != nil {
 		return nil, err

@@ -7,12 +7,12 @@ import (
 	"testing"
 )
 
-func TestMtClient(t *testing.T) {
+var (
+	appKey    = ""
+	appSecret = ""
+)
 
-	var (
-		appKey    = ""
-		appSecret = ""
-	)
+func TestMtClient(t *testing.T) {
 
 	client := NewClient()
 	requestBody := apis.NewRequestBody(apis.WithPlatform(1), apis.WithListTopiId(1))
@@ -20,7 +20,7 @@ func TestMtClient(t *testing.T) {
 
 	bodyJson := queryCoupon.BuildBody()
 
-	res, err := client.exec(queryCoupon, apis.NewHeaders(appKey, appSecret, bodyJson))
+	res, err := client.Exec(queryCoupon, apis.NewHeaders(appKey, appSecret, bodyJson))
 	if err != nil {
 		t.Error(err)
 		return
