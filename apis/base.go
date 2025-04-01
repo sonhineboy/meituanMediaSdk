@@ -104,7 +104,7 @@ func NewRequestBody(options ...Option) *RequestBody {
 
 type Option func(*RequestBody)
 
-func WithActID(key sting) Option {
+func WithActID(key string) Option {
 	return func(r *RequestBody) {
 		r.ActID = key
 	}
