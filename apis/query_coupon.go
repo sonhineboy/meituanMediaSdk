@@ -2,11 +2,6 @@ package apis
 
 import "encoding/json"
 
-const (
-	Path   = "/cps_open/common/api/v1/query_coupon"
-	Method = "POST"
-)
-
 type QueryCoupon struct {
 	Body   *RequestBody
 	Path   string
@@ -16,8 +11,8 @@ type QueryCoupon struct {
 func NewQueryCoupon(q *RequestBody) *QueryCoupon {
 	return &QueryCoupon{
 		Body:   q,
-		Path:   Path,
-		Method: Method,
+		Path:   "/cps_open/common/api/v1/query_coupon",
+		Method: "POST",
 	}
 }
 
