@@ -6,8 +6,6 @@ import (
 )
 
 func TestNewReferralLink(t *testing.T) {
-	link := NewReferralLink(NewReferralLinkRequestBody(func(body *ReferralLinkRequestBody) {
-		body.Platform = 1
-	}))
+	link := NewReferralLink(NewRequestBody(WithPlatform(3)))
 	assert.Equal(t, "POST", link.Method)
 }
