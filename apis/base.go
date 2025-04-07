@@ -92,6 +92,8 @@ type RequestBody struct {
 	LinkType        *int     `json:"linkType,omitempty"`        // 链接类型（指针类型） 链接类型，枚举值：1 H5长链接；2 H5短链接；3 deeplink(唤起)链接；4 微信小程序唤起路径；5 团口令；6 小程序码
 	LinkTypeList    []int    `json:"linkTypeList,omitempty"`    // 链接类型列表 (linkType和linkTypeList必传一个，linkType和linkTypeList都传时，只处理linkTypeList)。枚举值：1 H5长链接；2 H5短链接；3 deeplink(唤起)链接；4 微信小程序唤起路径；5 团口令；6 小程序码
 	Text            string   `json:"text,omitempty"`            // 活动链接文本
+	CityId          string   `json:"cityId,omitempty"`          //城市编码，榜单场景、多业务供给场景、搜索场景生效。城市ID下载：https://s3plus.meituan.net/media-public/%E5%9F%8E%E5%B8%82%E5%AD%97%E5%85%B82025.xlsx
+	BusinessAreaId  *int     `json:"businessAreaId,omitempty"`  //商圈编码，榜单场景、多业务供给场景、搜索场景生效。商圈下载：https://s3plus.meituan.net/media-public/%E5%95%86%E5%9C%88%E5%9F%8E%E5%B8%82%E6%98%A0%E5%B0%84%E5%AD%97%E5%85%B82025.xlsx
 }
 
 func NewRequestBody(options ...Option) *RequestBody {
@@ -103,6 +105,18 @@ func NewRequestBody(options ...Option) *RequestBody {
 }
 
 type Option func(*RequestBody)
+
+func WithBusinessAreaId(businessAreaId int) Option {
+	return func(r *RequestBody) {
+		r.BusinessAreaId = &businessAreaId
+	}
+}
+
+func WithCityId(cityId string) Option {
+	return func(r *RequestBody) {
+		r.CityId = cityId
+	}
+}
 
 func WithActID(key string) Option {
 	return func(r *RequestBody) {
